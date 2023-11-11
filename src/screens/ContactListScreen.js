@@ -22,10 +22,12 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor: "#fff",
-    maxWidth: 300,
+    minWidth: 300,
     borderColor: "black",
     borderWidth: 1,
-    borderRadius: 30,
+    borderRadius: 15,
+    margin: "auto",
+    maxHeight: 500,
   },
 });
 

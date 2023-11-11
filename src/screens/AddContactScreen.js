@@ -19,8 +19,9 @@ const styles = StyleSheet.create({
     maxWidth: 300,
     borderColor: "black",
     borderWidth: 1,
-    borderRadius: 30,
-    height: 100,
+    borderRadius: 15,
+    maxHeight: 200,
+    margin: "auto",
   },
 });
 export default AddContactScreen;
