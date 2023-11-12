@@ -1,13 +1,13 @@
-// src/screens/AddContactScreen.js
+// src/screens/AddTaskScreen.js
 import React from "react";
 import { View } from "react-native";
 import { StyleSheet } from "react-native";
-import AddContact from "../components/AddContact";
+import AddTask from "../components/AddTask";
 
-const AddContactScreen = ({ navigation }) => {
+const AddTaskScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <AddContact />
+      <AddTask />
     </View>
   );
 };
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
     margin: "auto",
   },
 });
-export default AddContactScreen;
+export default AddTaskScreen;

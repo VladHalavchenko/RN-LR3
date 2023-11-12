@@ -1,10 +1,9 @@
-// src/store.js
 import { configureStore } from "@reduxjs/toolkit";
-import contactReducer from "./reducers/contactReducer";
+import taskReducer from "./reducers/taskReducer";
 
 const store = configureStore({
   reducer: {
-    contacts: contactReducer,
+    tasks: taskReducer,
   },
 });
 

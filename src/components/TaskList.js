@@ -1,31 +1,31 @@
 import React, { useEffect } from "react";
 import { View, Text, FlatList, Button, StyleSheet } from "react-native";
 import { connect } from "react-redux";
-import { addContact, deleteContact } from "../actions/contactActions";
+import { addTask, deleteTask } from "../actions/taskActions";
 import Database from "../store/database";
 
-const ContactList = ({ contacts, onDeleteContact, onAddContact }) => {
+const TaskList = ({ tasks, onDeleteTask, onAddTask }) => {
   useEffect(() => {
     Database.getAllElements().then((result) => {
-      result.forEach(onAddContact);
+      result.forEach(onAddTask);
     });
   }, []);
 
-  const deleteContact = (id) => {
+  const deleteTask = (id) => {
     Database.removeElementByID(id);
-    onDeleteContact(id);
+    onDeleteTask(id);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Contact List</Text>
+      <Text style={styles.title}>Task List</Text>
       <FlatList
-        data={contacts}
+        data={tasks}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <View style={styles.contactContainer}>
-            <Text style={styles.contactName}>{item.name}</Text>
-            <Button title="Delete" onPress={() => deleteContact(item.id)} />
+          <View style={styles.taskContainer}>
+            <Text style={styles.taskName}>{item.name}</Text>
+            <Button title="Delete" onPress={() => deleteTask(item.id)} />
           </View>
         )}
       />
@@ -34,12 +34,12 @@ const ContactList = ({ contacts, onDeleteContact, onAddContact }) => {
 };
 
 const mapStateToProps = (state) => ({
-  contacts: state.contacts.contacts,
+  tasks: state.tasks.tasks,
 });
 
 const mapDispatchToProps = {
-  onDeleteContact: deleteContact,
-  onAddContact: addContact,
+  onDeleteTask: deleteTask,
+  onAddTask: addTask,
 };
 
 const styles = StyleSheet.create({
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 16,
   },
-  contactContainer: {
+  taskContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -62,9 +62,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 8,
   },
-  contactName: {
+  taskName: {
     fontSize: 16,
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskList);

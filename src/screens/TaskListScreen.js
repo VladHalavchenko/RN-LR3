@@ -1,18 +1,15 @@
-// src/screens/ContactListScreen.js
+// src/screens/TaskListScreen.js
 import React from "react";
 import { StyleSheet } from "react-native";
 import { View, Button } from "react-native";
 import { connect } from "react-redux";
-import ContactList from "../components/ContactList";
+import TaskList from "../components/TaskList";
 
-const ContactListScreen = ({ navigation }) => {
+const TaskListScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <ContactList />
-      <Button
-        title="Add Contact"
-        onPress={() => navigation.navigate("AddContact")}
-      />
+      <TaskList />
+      <Button title="Add Task" onPress={() => navigation.navigate("AddTask")} />
     </View>
   );
 };
@@ -31,4 +28,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(null, null)(ContactListScreen);
+export default connect(null, null)(TaskListScreen);

@@ -10,7 +10,7 @@ import {
 } from "firebase/firestore";
 
 export default class Database {
-  static COLLECTION_NAME = "contacts";
+  static COLLECTION_NAME = "tasks";
   static async getELementByID(id) {
     const docRef = doc(db, this.COLLECTION_NAME, id);
     const docSnap = await getDoc(docRef);

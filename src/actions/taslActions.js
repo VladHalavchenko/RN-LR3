@@ -1,12 +1,12 @@
 export const ADD_CONTACT = "ADD_CONTACT";
 export const DELETE_CONTACT = "DELETE_CONTACT";
 
-export const addContact = (contact) => ({
+export const addTask = (task) => ({
   type: ADD_CONTACT,
-  payload: contact,
+  payload: task,
 });
 
-export const deleteContact = (contactId) => ({
+export const deleteTask = (taskId) => ({
   type: DELETE_CONTACT,
-  payload: contactId,
+  payload: taskId,
 });

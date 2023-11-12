@@ -1,17 +1,17 @@
-// src/components/AddContact.js
+// src/components/AddTask.js
 import React, { useState } from "react";
 import { View, TextInput, Button, StyleSheet } from "react-native";
 import { connect } from "react-redux";
-import { addContact } from "../actions/contactActions";
+import { addTask } from "../actions/taskActions";
 import Database from "../store/database";
 
-const AddContact = ({ onAddContact }) => {
+const AddTask = ({ onAddTask }) => {
   const [name, setName] = useState("");
 
-  const handleAddContact = () => {
+  const handleAddTask = () => {
     if (name.trim() !== "") {
       Database.saveToDB({ name }).then((res) => {
-        onAddContact(res);
+        onAddTask(res);
       });
       setName("");
     }
@@ -21,13 +21,13 @@ const AddContact = ({ onAddContact }) => {
     <View style={styles.container}>
       <TextInput
         style={styles.input}
-        placeholder="Enter contact name"
+        placeholder="Enter task name"
         value={name}
         onChangeText={(text) => setName(text)}
       />
       <Button
-        title="Add Contact"
-        onPress={handleAddContact}
+        title="Add Task"
+        onPress={handleAddTask}
         style={styles.addButton}
       />
     </View>
@@ -35,7 +35,7 @@ const AddContact = ({ onAddContact }) => {
 };
 
 const mapDispatchToProps = {
-  onAddContact: addContact,
+  onAddTask: addTask,
 };
 
 const styles = StyleSheet.create({
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(null, mapDispatchToProps)(AddContact);
+export default connect(null, mapDispatchToProps)(AddTask);
