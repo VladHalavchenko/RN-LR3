@@ -1,14 +1,18 @@
 // App.js
 import React from "react";
-import { Provider } from "react-redux";
-import AppNavigator from "./src/navigation/AppNavigator";
-import store from "./src/store";
+import { View } from "react-native";
+import { Block } from "./components/Block";
+import { Counter } from "./components/Counter";
+import { Timer } from "./components/Timer";
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <AppNavigator />
-    </Provider>
+    <View>
+      <Block>
+        <Counter />
+        <Timer />
+      </Block>
+    </View>
   );
 };
 
