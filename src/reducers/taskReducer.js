@@ -1,5 +1,5 @@
 // src/reducers/taskReducer.js
-import { ADD_CONTACT, DELETE_CONTACT } from "../actions/taskActions";
+import { ADD_TASK, DELETE_TASK } from "../actions/taskActions";
 
 const initialState = {
   tasks: [],
@@ -7,12 +7,12 @@ const initialState = {
 
 const taskReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_CONTACT:
+    case ADD_TASK:
       return {
         ...state,
         tasks: [...state.tasks, action.payload],
       };
-    case DELETE_CONTACT:
+    case DELETE_TASK:
       return {
         ...state,
         tasks: state.tasks.filter((task) => task.id !== action.payload),

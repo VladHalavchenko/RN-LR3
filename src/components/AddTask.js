@@ -7,13 +7,15 @@ import Database from "../store/database";
 
 const AddTask = ({ onAddTask }) => {
   const [name, setName] = useState("");
+  const [desc, setDesc] = useState("");
 
   const handleAddTask = () => {
-    if (name.trim() !== "") {
-      Database.saveToDB({ name }).then((res) => {
+    if (name.trim() && desc.trim()) {
+      Database.saveToDB({ title: name, description: desc }).then((res) => {
         onAddTask(res);
       });
       setName("");
+      setDesc("");
     }
   };
 
@@ -24,6 +26,12 @@ const AddTask = ({ onAddTask }) => {
         placeholder="Enter task name"
         value={name}
         onChangeText={(text) => setName(text)}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Enter description"
+        value={desc}
+        onChangeText={(text) => setDesc(text)}
       />
       <Button
         title="Add Task"

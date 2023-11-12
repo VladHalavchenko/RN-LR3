@@ -3,6 +3,7 @@ import { View, Text, FlatList, Button, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { addTask, deleteTask } from "../actions/taskActions";
 import Database from "../store/database";
+import { Task } from "./Task";
 
 const TaskList = ({ tasks, onDeleteTask, onAddTask }) => {
   useEffect(() => {
@@ -22,12 +23,7 @@ const TaskList = ({ tasks, onDeleteTask, onAddTask }) => {
       <FlatList
         data={tasks}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.taskContainer}>
-            <Text style={styles.taskName}>{item.name}</Text>
-            <Button title="Delete" onPress={() => deleteTask(item.id)} />
-          </View>
-        )}
+        renderItem={({ item }) => <Task item={item} deleteTask={deleteTask} />}
       />
     </View>
   );
