@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f0f0f0",
     borderRadius: 8,
     marginBottom: 8,
+    minWidth: 150,
   },
   contactName: {
     fontSize: 16,

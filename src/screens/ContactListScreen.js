@@ -9,10 +9,13 @@ const ContactListScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ContactList />
-      <Button
-        title="Add Contact"
-        onPress={() => navigation.navigate("AddContact")}
-      />
+      <View style={styles.btn}>
+        <Button
+          style={styles.btn}
+          title="Add Contact"
+          onPress={() => navigation.navigate("AddContact")}
+        />
+      </View>
     </View>
   );
 };
@@ -20,14 +23,19 @@ const ContactListScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "center",
     padding: 16,
     backgroundColor: "#fff",
     minWidth: 300,
     borderColor: "black",
     borderWidth: 1,
     borderRadius: 15,
-    margin: "auto",
+    margin: 20,
     maxHeight: 500,
+  },
+  btn: {
+    margin: "auto",
+    minWidth: 200,
   },
 });
 
