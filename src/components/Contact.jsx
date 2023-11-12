@@ -1,11 +1,22 @@
-import { View, Text, Button, StyleSheet } from "react-native";
+import React, { useEffect, useRef } from "react";
+import { Text, Button, StyleSheet, Animated } from "react-native";
 
 export const Contact = ({ item, deleteContact }) => {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
+
   return (
-    <View style={styles.contactContainer}>
+    <Animated.View style={[styles.contactContainer, { opacity: fadeAnim }]}>
       <Text style={styles.contactName}>{item.name}</Text>
       <Button title="Delete" onPress={() => deleteContact(item.id)} />
-    </View>
+    </Animated.View>
   );
 };
 
