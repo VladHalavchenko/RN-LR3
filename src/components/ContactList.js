@@ -1,10 +1,21 @@
-// src/components/ContactList.js
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, FlatList, Button, StyleSheet } from "react-native";
 import { connect } from "react-redux";
-import { deleteContact } from "../actions/contactActions";
+import { addContact, deleteContact } from "../actions/contactActions";
+import Database from "../store/database";
 
-const ContactList = ({ contacts, onDeleteContact }) => {
+const ContactList = ({ contacts, onDeleteContact, onAddContact }) => {
+  useEffect(() => {
+    Database.getAllElements().then((result) => {
+      result.forEach(onAddContact);
+    });
+  }, []);
+
+  const deleteContact = (id) => {
+    Database.removeElementByID(id);
+    onDeleteContact(id);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Contact List</Text>
@@ -14,7 +25,7 @@ const ContactList = ({ contacts, onDeleteContact }) => {
         renderItem={({ item }) => (
           <View style={styles.contactContainer}>
             <Text style={styles.contactName}>{item.name}</Text>
-            <Button title="Delete" onPress={() => onDeleteContact(item.id)} />
+            <Button title="Delete" onPress={() => deleteContact(item.id)} />
           </View>
         )}
       />
@@ -28,6 +39,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   onDeleteContact: deleteContact,
+  onAddContact: addContact,
 };
 
 const styles = StyleSheet.create({

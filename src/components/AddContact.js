@@ -3,13 +3,16 @@ import React, { useState } from "react";
 import { View, TextInput, Button, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { addContact } from "../actions/contactActions";
+import Database from "../store/database";
 
 const AddContact = ({ onAddContact }) => {
   const [name, setName] = useState("");
 
   const handleAddContact = () => {
     if (name.trim() !== "") {
-      onAddContact({ id: Date.now(), name });
+      Database.saveToDB({ name }).then((res) => {
+        onAddContact(res);
+      });
       setName("");
     }
   };

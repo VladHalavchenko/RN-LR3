@@ -8,7 +8,6 @@ const initialState = {
 const contactReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_CONTACT:
-      console.log("add 2");
       return {
         ...state,
         contacts: [...state.contacts, action.payload],
