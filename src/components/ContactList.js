@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { View, Text, FlatList, Button, StyleSheet } from "react-native";
+import { View, Text, FlatList, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { addContact, deleteContact } from "../actions/contactActions";
 import Database from "../store/database";
+import { Contact } from "./Contact";
 
 const ContactList = ({ contacts, onDeleteContact, onAddContact }) => {
   useEffect(() => {
@@ -23,10 +24,7 @@ const ContactList = ({ contacts, onDeleteContact, onAddContact }) => {
         data={contacts}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <View style={styles.contactContainer}>
-            <Text style={styles.contactName}>{item.name}</Text>
-            <Button title="Delete" onPress={() => deleteContact(item.id)} />
-          </View>
+          <Contact item={item} deleteContact={deleteContact} />
         )}
       />
     </View>
@@ -52,18 +50,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 16,
-  },
-  contactContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 12,
-    backgroundColor: "#f0f0f0",
-    borderRadius: 8,
-    marginBottom: 8,
-  },
-  contactName: {
-    fontSize: 16,
   },
 });
 
