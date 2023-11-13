@@ -1,12 +1,23 @@
-import { View, Text, Button, StyleSheet } from "react-native";
+import React, { useEffect, useRef } from "react";
+import { Text, Button, StyleSheet, Animated } from "react-native";
 
 export const Task = ({ deleteTask, item }) => {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
+
   return (
-    <View style={styles.taskContainer}>
+    <Animated.View style={[styles.taskContainer, { opacity: fadeAnim }]}>
       <Text style={styles.taskName}>{item.title}</Text>
       <Text style={styles.taskDesc}>{item.description}</Text>
       <Button title="Done" onPress={() => deleteTask(item.id)} />
-    </View>
+    </Animated.View>
   );
 };
 
