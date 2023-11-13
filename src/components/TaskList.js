@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
-import { View, Text, FlatList, Button, StyleSheet } from "react-native";
+import { View, Text, FlatList, StyleSheet, Dimensions } from "react-native";
 import { connect } from "react-redux";
 import { addTask, deleteTask } from "../actions/taskActions";
 import Database from "../store/database";
 import { Task } from "./Task";
 
 const TaskList = ({ tasks, onDeleteTask, onAddTask }) => {
+  const width = Dimensions.get("window").width;
+  const containerStyle = width < 500 ? styles.mobile : styles.desktop;
   useEffect(() => {
     Database.getAllElements().then((result) => {
       result.forEach(onAddTask);
@@ -21,6 +23,7 @@ const TaskList = ({ tasks, onDeleteTask, onAddTask }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Task List</Text>
       <FlatList
+        contentContainerStyle={containerStyle}
         data={tasks}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <Task item={item} deleteTask={deleteTask} />}
@@ -49,17 +52,17 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 16,
   },
-  taskContainer: {
+  mobile: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+  },
+  desktop: {
+    flex: 1,
+    flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
-    padding: 12,
-    backgroundColor: "#f0f0f0",
-    borderRadius: 8,
-    marginBottom: 8,
-  },
-  taskName: {
-    fontSize: 16,
+    gap: 15,
   },
 });
 

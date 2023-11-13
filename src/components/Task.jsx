@@ -30,6 +30,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#f0f0f0",
     borderRadius: 8,
     marginBottom: 8,
+    maxWidth: 350,
+    minWidth: 250,
   },
   taskName: {
     fontSize: 20,
